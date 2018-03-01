@@ -7,7 +7,6 @@
 
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.firefox.FirefoxDriver
 
 waiting {
 	timeout = 2
@@ -31,13 +30,7 @@ environments {
 		}
 	}
 	
-	// run via “./gradlew firefoxTest”
-	// See: http://code.google.com/p/selenium/wiki/FirefoxDriver
-	firefox {
-		atCheckWaiting = 1
 
-		driver = { new FirefoxDriver() }
-	}
 
 }
 
