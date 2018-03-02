@@ -12,7 +12,17 @@ class DockerPermissionsSpec extends GebSpec {
         then: "we expect correct exit codes"
         dockerExitValue == 0
         dockerComposeExitValue == 0
+    }
 
+    //docker exec wordpresstester_wordpress_1 stat -c %A%U%G /bitnami/wordpress/wp-config.php
+
+
+    def "checking wp-config permissions"() {
+        when: "docker is executed directly"
+        String rights = "docker exec wordpresstester_wordpress_1 stat -c %A%U%G /bitnami/wordpress/wp-config.php".execute().getText()
+
+        then: "we expect correct rights and user/group"
+        rights == "-rw-r-----rootdaemon"
 
     }
 }
