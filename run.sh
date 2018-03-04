@@ -10,6 +10,7 @@ sleep 30
 chmod +x ./wait-for-it.sh
 ./wait-for-it.sh -t 30 localhost:80 -- echo "wordpress is up"
 cd geb-tester
+chmod +x ./gradlew
 ./gradlew test
 cd ..
 cd bitnami-docker-wordpress
