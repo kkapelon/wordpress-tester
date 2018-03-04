@@ -12,7 +12,7 @@ class WordpressDashboardPage extends Page {
 
     
 
-    void editAPost() {
+    void editPosts() {
         getBrowser().go("/wp-admin/edit.php")
     }
 }

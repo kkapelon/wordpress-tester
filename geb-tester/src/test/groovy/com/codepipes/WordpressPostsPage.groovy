@@ -8,6 +8,11 @@ class WordpressPostsPage extends Page {
 
     static content = {
         publishedTable { $('li[class="publish"]') }
+        addNewPostButton { $('a[class*="page-title-action"]')}
+    }
+
+    void addNewPost() {
+        addNewPostButton().click()
     }
 
     

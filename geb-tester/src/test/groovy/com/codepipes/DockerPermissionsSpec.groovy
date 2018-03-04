@@ -1,3 +1,5 @@
+package com.codepipes
+
 import geb.spock.GebSpec
 
 class DockerPermissionsSpec extends GebSpec {

@@ -4,33 +4,39 @@ import geb.spock.GebSpec
 
 class WordpressSpec extends GebSpec {
 
-    def "can login to Wordpress"() {
-        when:
+    def "Can publish a new post"() {
+        when: "at the homepage"
         to WordpressHomePage
 
-        and:
+        and: "the login link is clicked"
         goToLoginPage()
 
-        then:
+        then: "the login page appears"
         at WordpressLoginPage
 
-        when:
+        when: "Login details are entered"
         enterLoginDetails()
-        report "google home page"
 
-        then:
+        then: "and the dashboard appears"
         at WordpressDashboardPage
 
-        when:
-        editAPost()
+        when: "The edit posts button is clicked"
+        editPosts()
 
-        then:
+        then: "and all posts appear"
         at WordpressPostsPage
 
-        // when:
-        // manualsMenu.links[0].click()
+        when: "the add new post button is clicked"
+        addNewPost()
 
-        // then:
-        // at TheBookOfGebPage
+        then: "and the editor appears"
+        at WordpressNewPostPage
+
+        when: "Sample content is entered"
+        publishPost()
+
+        then: "the post is published with success"
+        at WordpressNewPostPage
+
     }
 }
