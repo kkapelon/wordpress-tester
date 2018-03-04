@@ -1,10 +1,13 @@
 package com.codepipes
 
-import geb.spock.GebSpec
 
-class DockerPermissionsSpec extends GebSpec {
+import spock.lang.*
 
-    def "checking Docker permissions"() {
+@Stepwise
+@Title("Check correct permissions of file wp-config")
+class DockerPermissionsSpec extends Specification {
+
+    def "Checking Docker permissions"() {
         when: "docker is executed directly"
         int dockerExitValue = "docker --version".execute().waitFor()
 
@@ -19,7 +22,7 @@ class DockerPermissionsSpec extends GebSpec {
     //docker exec bitnamidockerwordpress_wordpress_1 stat -c %A%U%G /bitnami/wordpress/wp-config.php
 
 
-    def "checking wp-config permissions"() {
+    def "Checking wp-config permissions"() {
         when: "docker is executed directly"
         String rights = "docker exec bitnamidockerwordpress_wordpress_1 stat -c %A%U%G /bitnami/wordpress/wp-config.php".execute().getText().trim()
 

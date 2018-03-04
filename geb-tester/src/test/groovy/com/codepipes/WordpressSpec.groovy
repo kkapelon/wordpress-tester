@@ -1,9 +1,34 @@
 package com.codepipes
 
 import geb.spock.GebSpec
+import spock.lang.*
 
+import groovyx.net.http.*
+
+@Stepwise
+@Title("Check valid Wordpress functioning")
 class WordpressSpec extends GebSpec {
 
+
+    def "Port 80 should accept connections"(){
+        given: "a running wordpress installation"
+        boolean connected = false
+
+        when: "we connect with http"
+        HttpBuilder.configure {
+            request.uri = 'http://localhost'
+            }.head {
+                response.when(200){ 
+                    connected = true
+                }
+            }
+
+        then: "then we should get a valid response"
+        connected
+
+        }
+
+    
     def "Can publish a new post"() {
         when: "at the homepage"
         to WordpressHomePage
